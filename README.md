@@ -46,6 +46,8 @@ A `src/data/chords.json` fájl 48 akkordot tartalmaz (objektum formátum):
 
 A **Lejátszás** gomb véletlenszerűen mutatja az akkordokat a beállított ideig.
 
+**2. szint** (`gyak-level-2.json`): D, A, Hm, F — 7 perc, 7 mp/akkord.
+
 ## GitHub Pages (ingyenes hosting)
 
 ### 1. Repó létrehozása GitHubon

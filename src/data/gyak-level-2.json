@@ -1,0 +1,10 @@
+{
+  "id": "level-2",
+  "title": "2. szint — további alapakkordok + F barré",
+  "description": "D, A, Hm és az első barré akkord (F). Az 1. szint után gyakorold, amíg magabiztosan nem megy — csak utána lépj tovább.",
+  "settings": {
+    "totalMinutes": 7,
+    "chordDisplaySeconds": 7
+  },
+  "chords": ["D", "A", "Hm", "F"]
+}

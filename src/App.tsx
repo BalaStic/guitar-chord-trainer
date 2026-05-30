@@ -3,6 +3,7 @@ import { Fretboard } from "./components/Fretboard";
 import { PracticePanel } from "./components/PracticePanel";
 import chordDatabase from "./data/chords.json";
 import practiceLevel1 from "./data/gyak-level-1.json";
+import practiceLevel2 from "./data/gyak-level-2.json";
 import { chordToPositions } from "./lib/chordToPositions";
 import {
   buildChordMap,
@@ -21,14 +22,20 @@ const CHORD_TYPES = ["Dur", "Dur7", "Moll", "Moll7"] as const;
 const groups = parseChordDatabase(chordDatabase as ChordDatabase);
 const allChords = flattenGroups(groups);
 const chordMap = buildChordMap(allChords);
-const level1 = practiceLevel1 as PracticeLevel;
+
+const practiceLevels = [
+  practiceLevel1 as PracticeLevel,
+  practiceLevel2 as PracticeLevel,
+];
 
 function App() {
   const [groupIndex, setGroupIndex] = useState(6);
   const [typeIndex, setTypeIndex] = useState(0);
   const [showEmptyNeck, setShowEmptyNeck] = useState(false);
+  const [levelIndex, setLevelIndex] = useState(0);
 
-  const practice = usePracticeSession(level1, chordMap);
+  const activeLevel = practiceLevels[levelIndex] ?? practiceLevels[0];
+  const practice = usePracticeSession(activeLevel, chordMap);
 
   const group = groups[groupIndex];
   const browseChord = group?.chords[typeIndex] ?? allChords[0];
@@ -51,16 +58,41 @@ function App() {
       </header>
 
       <main className="mx-auto flex w-full max-w-[125.84rem] flex-col items-center gap-10 px-6 py-10">
-        <PracticePanel
-          level={level1}
-          isPlaying={practice.isPlaying}
-          sessionRemainingSec={practice.sessionRemainingSec}
-          chordRemainingSec={practice.chordRemainingSec}
-          chordsShown={practice.chordsShown}
-          missingChords={practice.missingChords}
-          onStart={practice.start}
-          onStop={practice.stop}
-        />
+        <section className="w-full max-w-2xl space-y-3">
+          <div>
+            <p className="mb-2 text-center text-xs font-medium uppercase tracking-wider text-slate-500">
+              Gyakorlási szint
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {practiceLevels.map((level, i) => (
+                <button
+                  key={level.id}
+                  type="button"
+                  disabled={practice.isPlaying}
+                  onClick={() => setLevelIndex(i)}
+                  className={`rounded-lg px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-40 ${
+                    levelIndex === i
+                      ? "bg-emerald-700 text-white ring-1 ring-emerald-400/50"
+                      : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                  }`}
+                >
+                  {i + 1}. szint
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <PracticePanel
+            level={activeLevel}
+            isPlaying={practice.isPlaying}
+            sessionRemainingSec={practice.sessionRemainingSec}
+            chordRemainingSec={practice.chordRemainingSec}
+            chordsShown={practice.chordsShown}
+            missingChords={practice.missingChords}
+            onStart={practice.start}
+            onStop={practice.stop}
+          />
+        </section>
 
         <section className="w-full space-y-5">
           <div className="flex flex-wrap items-center justify-center gap-3">
@@ -161,7 +193,7 @@ function App() {
           <p className="leading-relaxed">
             Akkordok: <code className="text-orange-300">src/data/chords.json</code>
             · Gyakorlás:{" "}
-            <code className="text-orange-300">src/data/gyak-level-1.json</code>
+            <code className="text-orange-300">src/data/gyak-level-*.json</code>
           </p>
           <p className="mt-3">{NOTE_NAMING_HELP}</p>
         </section>
