@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-neck: #3d2914;
+  --color-neck-light: #5c3d1e;
+  --color-fret-wire: #e8c547;
+  --color-fret-wire-dim: #b8922a;
+  --color-string: #d4d0c8;
+  --color-finger: #f97316;
+  --color-muted: #64748b;
+  --color-open: #22c55e;
+}
+
+body {
+  @apply m-0 min-h-screen bg-slate-950 text-slate-100 font-sans antialiased;
+}

@@ -1,0 +1,10 @@
+{
+  "id": "level-1",
+  "title": "1. szint — nyitott akkordok",
+  "description": "Alap dur és moll akkordok, nyitott húros fogások. Gyakorold, amíg késznek nem érzed magad — csak utána lépj a következő szintre.",
+  "settings": {
+    "totalMinutes": 5,
+    "chordDisplaySeconds": 8
+  },
+  "chords": ["C", "G", "Am", "Em", "Dm"]
+}
