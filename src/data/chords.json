@@ -26,7 +26,7 @@
 
   "F": { "name": "F", "notes": ["F", "A", "C"], "positions": [{ "string": 6, "fret": 1, "note": "F" }, { "string": 5, "fret": 3, "note": "C" }, { "string": 4, "fret": 3, "note": "F" }, { "string": 3, "fret": 2, "note": "A" }, { "string": 2, "fret": 1, "note": "C" }, { "string": 1, "fret": 1, "note": "F" }] },
   "F maj7": { "name": "F maj7", "notes": ["F", "A", "C", "E"], "positions": [{ "string": 6, "fret": 1, "note": "F" }, { "string": 5, "fret": 3, "note": "C" }, { "string": 4, "fret": 2, "note": "E" }, { "string": 3, "fret": 2, "note": "A" }] },
-  "Dm": { "name": "Dm", "notes": ["D", "F", "A"], "positions": [{ "string": 4, "fret": 0, "note": "D" }, { "string": 3, "fret": 2, "note": "A" }, { "string": 2, "fret": 3, "note": "F" }, { "string": 1, "fret": 1, "note": "F" }] },
+  "Dm": { "name": "Dm", "notes": ["D", "F", "A"], "positions": [{ "string": 4, "fret": 0, "note": "D" }, { "string": 3, "fret": 2, "note": "A" }, { "string": 2, "fret": 3, "note": "D" }, { "string": 1, "fret": 1, "note": "F" }] },
   "Dm7": { "name": "Dm7", "notes": ["D", "F", "A", "C"], "positions": [{ "string": 4, "fret": 0, "note": "D" }, { "string": 3, "fret": 2, "note": "A" }, { "string": 2, "fret": 1, "note": "C" }, { "string": 1, "fret": 1, "note": "F" }] },
 
   "C": { "name": "C", "notes": ["C", "E", "G"], "positions": [{ "string": 5, "fret": 3, "note": "C" }, { "string": 4, "fret": 2, "note": "E" }, { "string": 3, "fret": 0, "note": "G" }, { "string": 2, "fret": 1, "note": "C" }, { "string": 1, "fret": 0, "note": "E" }] },
