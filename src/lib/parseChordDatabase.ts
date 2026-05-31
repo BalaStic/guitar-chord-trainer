@@ -43,6 +43,9 @@ export function positionsToFretNotes(
 export function detectBarre(
   frets: ChordDefinition["frets"],
 ): number | undefined {
+  // Nyitott húras akkordok (pl. A, Am) — nem barré
+  if (frets.some((f) => f === 0)) return undefined;
+
   const atFret = new Map<number, number>();
   for (const f of frets) {
     if (f > 0) {
