@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import type { ChordPosition } from "../types/chord";
 import { STRING_COUNT } from "../lib/chordToPositions";
 
-/** Felülről lefelé: vékony e → vastag E (szokásos tab sorrend) */
-const STRING_LABELS = ["e", "H", "G", "D", "A", "E"] as const;
+/** Felülről lefelé: vékony E → vastag E (szokásos tab sorrend) */
+const STRING_LABELS = ["E", "H", "G", "D", "A", "E"] as const;
 
 /** Húrnév és nyak-jelek (×, ○) — azonos megjelenés */
 const STRING_LABEL_CLASS =
@@ -11,8 +11,20 @@ const STRING_LABEL_CLASS =
 
 /** Fehér bundjelölő pöttyök a G és D húr között */
 const INLAY_FRETS: readonly number[] = [3, 5, 7, 9];
+const DOUBLE_INLAY_FRET = 12;
 const G_STRING_INDEX =
   STRING_COUNT - 1 - STRING_LABELS.indexOf("G");
+const H_STRING_INDEX =
+  STRING_COUNT - 1 - STRING_LABELS.indexOf("H");
+const D_STRING_INDEX =
+  STRING_COUNT - 1 - STRING_LABELS.indexOf("D");
+
+function shouldShowInlay(stringIndex: number, fret: number): boolean {
+  if (fret === DOUBLE_INLAY_FRET) {
+    return stringIndex === H_STRING_INDEX || stringIndex === D_STRING_INDEX;
+  }
+  return stringIndex === G_STRING_INDEX && INLAY_FRETS.includes(fret);
+}
 
 export interface FretboardProps {
   fretCount?: number;
@@ -169,14 +181,13 @@ function StringRowCells({
               />
             )}
 
-            {/* Bundjelölő (G–D húr között) */}
-            {stringIndex === G_STRING_INDEX &&
-              INLAY_FRETS.includes(fret) && (
-                <div
-                  className="pointer-events-none absolute bottom-0 left-1/2 z-[1] h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border border-white/40 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
-                  aria-hidden
-                />
-              )}
+            {/* Bundjelölő (G–D, 12. bundon H–G + D–A) */}
+            {shouldShowInlay(stringIndex, fret) && (
+              <div
+                className="pointer-events-none absolute bottom-0 left-1/2 z-[1] h-6 w-6 -translate-x-1/2 translate-y-1/2 rounded-full border border-white/40 bg-white shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
+                aria-hidden
+              />
+            )}
 
             {barreContinues && (
               <div className="absolute left-0 right-0 top-1/2 z-[1] h-3.5 -translate-y-1/2 rounded-full bg-orange-500" />
